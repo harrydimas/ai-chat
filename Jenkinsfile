@@ -1,10 +1,20 @@
 pipeline {
     agent any
+
+    environment {
+        PATH = "/root/.bun/bin:$PATH"
+    }
+    
     stages {
         stage('Check files') {
             steps {
                 sh 'ls -lah'
                 sh 'cat package.json || echo "No package.json found"'
+            }
+        }
+        stage('Check bun') {
+            steps {
+                sh 'bun --version'
             }
         }
         stage('Install') {
