@@ -1,12 +1,10 @@
 import { OpenAI } from "openai";
-import { config } from "dotenv";
 import { responseFormat } from "./response_format.js"
-config();
 
 const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
+  apiKey: Bun.env.OPENAI_API_KEY
 });
-const model = process.env.OPENAI_MODEL || "gpt-4.1-nano";
+const model = Bun.env.OPENAI_MODEL || "gpt-4.1-nano";
 
 let responseId = null;
 
