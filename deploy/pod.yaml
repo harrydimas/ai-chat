@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-nginx
+  labels:
+    name: app-nginx
+    stack: nodejs
+    version: 2.1.1
+  namespace: backend
+spec:
+  containers:
+  - name: app-nginx
+    image: nginx:alpine
+    resources:
+      limits:
+        memory: "10Mi"
+        cpu: "50m"
+    ports:
+      - containerPort: 80
