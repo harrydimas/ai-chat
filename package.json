@@ -4,7 +4,7 @@
   "author": "Dimas",
   "license": "UNLICENSED",
   "scripts": {
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\"",
     "start:dev": "bun --watch ./src/main.ts",
     "start:debug": "nest start --debug --watch",
     "start:prod": "bun ./src/main.ts"

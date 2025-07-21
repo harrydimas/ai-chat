@@ -3,13 +3,13 @@ import { AppService } from "./app.service";
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) { }
+  constructor(private readonly appService: AppService) {}
 
-  @Post('chat')
+  @Post("chat")
   async sendChatMessage(@Body() body: any, @Req() req, @Res() res) {
-    res.setHeader('Content-Type', 'text/event-stream');
-    res.setHeader('Cache-Control', 'no-cache');
-    res.setHeader('Connection', 'keep-alive');
+    res.setHeader("Content-Type", "text/event-stream");
+    res.setHeader("Cache-Control", "no-cache");
+    res.setHeader("Connection", "keep-alive");
     res.flushHeaders(); // flush headers to start sending
 
     const message = body.message;
@@ -26,11 +26,11 @@ export class AppController {
       },
       complete: () => {
         res.end(); // close the stream
-      }
+      },
     });
 
     // Clean up when client disconnects
-    req.on('close', () => {
+    req.on("close", () => {
       subscription.unsubscribe();
       res.end();
     });
