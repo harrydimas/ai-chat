@@ -11,7 +11,7 @@ export class AppService {
 
   constructor() {
     this.client = new OpenAI({
-      apiKey: Bun.env.OPENAI_API_KEY,
+      apiKey: Bun.env.OPENAI_API_KEY || "sk-proj-...",
     });
     this.model = Bun.env.OPENAI_MODEL || "gpt-4.1-nano";
   }
