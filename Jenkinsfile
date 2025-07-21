@@ -4,7 +4,7 @@ pipeline {
     environment {
         PATH = "/root/.bun/bin:$PATH"
     }
-    
+
     stages {
         stage('Check files') {
             steps {
@@ -17,19 +17,24 @@ pipeline {
                 sh 'bun --version'
             }
         }
-        stage('Install') {
+        stage('Prepare') {
             steps {
-                sh 'bun install'
+                echo 'Prepare'
+                sh '''
+                rm -rf .env
+                rm -rf node_modules
+                rm -rf dist
+                cp .env.dev .env
+                '''
             }
         }
-        stage('Format') {
+        stage('build/Deploy'){
             steps {
-                sh 'bun run format'
-            }
-        }
-        stage('Start') {
-            steps {
-                sh 'bun run start:prod'
+                echo 'Build'
+                sh '''
+                docker-compose down 
+                docker-compose up --build -d
+                '''
             }
         }
     }

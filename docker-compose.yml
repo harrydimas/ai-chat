@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  ai-chat:
+    container_name: ai-chat
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - ai-chat
+    restart: always
+    environment:
+      - OPENAI_API_KEY=sk-proj-...
+
+networks:
+  ai-chat:
